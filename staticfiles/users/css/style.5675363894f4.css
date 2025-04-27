@@ -1,0 +1,99 @@
+/* GLOBAL PAGE RESET */
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+/* For login, signup, reset password pages */
+
+.auth-background {
+    background: url("../images/hire.af7e11fbd893.jpg") no-repeat center center fixed;
+    background-size: cover;
+}
+
+
+/* For jobs and other pages */
+
+.jobs-background {
+    background-color: #bfd9ff;
+}
+
+.contents {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 2px;
+}
+
+
+/* BACKGROUND IMAGE */
+
+
+/* LOGIN CARD STYLING */
+
+.login-card {
+    backdrop-filter: blur(12px);
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    padding: 40px 30px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0px 12px 30px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+
+/* FORM FIELD SPACING */
+
+.login-card form {
+    margin-top: 20px;
+    text-align: left;
+}
+
+.login-card input {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 10px 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+
+/* BUTTON */
+
+.login-card button {
+    width: 100%;
+    background-color: #0066ff;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.login-card button:hover {
+    background-color: #004ccc;
+}
+
+
+/* LINK STYLE */
+
+.login-card a {
+    font-size: 14px;
+    color: #0066cc;
+    text-decoration: none;
+}
+
+.login-card a:hover {
+    text-decoration: underline;
+}

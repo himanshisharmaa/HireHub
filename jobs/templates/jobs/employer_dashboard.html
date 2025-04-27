@@ -1,0 +1,64 @@
+{% extends 'users/base.html' %}
+{% block body_class %}jobs-background{% endblock %}
+{% block content %}
+
+<div class="container py-5">
+  <h2 class="mb-4">Employer Dashboard</h2>
+
+  {% if jobs %}
+    {% for job in jobs %}
+      <div class="card mb-5 shadow-sm p-4 rounded">
+
+        <div class="card-header bg-light">
+          <h4 class="mb-0">{{ job.title }}</h4>
+          <small class="text-muted">{{ job.description|truncatewords:20 }}</small>
+        </div>
+
+        <div class="card-body">
+          <h5 class="mb-3">Applicants:</h5>
+
+          <!-- SCROLLABLE APPLICANTS DIV -->
+          <div style="max-height: 400px; overflow-y: auto; padding-right: 10px;">
+
+            {% for application in job.application_set.all %}
+              <div class="border rounded p-3 mb-3 bg-white shadow-sm">
+
+                <p><strong>Candidate:</strong> {{ application.candidate.username }}</p>
+                <p><strong>Applied on:</strong> {{ application.applied_at|date:"M d, Y" }}</p>
+                <p><strong>Cover Letter:</strong> {{ application.cover_letter }}</p>
+
+                {% if application.resume %}
+                  <p><strong>Resume:</strong> <a href="{{ application.resume.url }}" target="_blank">Download</a></p>
+                {% endif %}
+
+                <p>
+                  <strong>Status:</strong>
+                  {% if application.status == "Pending" %}
+                    <span class="badge bg-warning text-dark">{{ application.status }}</span>
+                  {% elif application.status == "Viewed" %}
+                    <span class="badge bg-info text-dark">{{ application.status }}</span>
+                  {% elif application.status == "Shortlisted" %}
+                    <span class="badge bg-success">{{ application.status }}</span>
+                  {% endif %}
+                </p>
+
+                <a href="{% url 'update_application_status' application.pk %}" class="btn btn-sm btn-outline-primary mt-2">Update Status</a>
+
+              </div>
+            {% empty %}
+              <p>No applications yet.</p>
+            {% endfor %}
+
+          </div>
+          <!-- SCROLLABLE END -->
+
+        </div>
+
+      </div>
+    {% endfor %}
+  {% else %}
+    <p>You haven't posted any jobs yet.</p>
+  {% endif %}
+</div>
+
+{% endblock %}

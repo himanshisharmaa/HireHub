@@ -1,0 +1,17 @@
+{% extends 'users/base.html' %}
+{% block body_class %}jobs-background{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="card shadow p-4" style="border-radius: 1rem; max-width: 600px; margin: auto;">
+    <h2 class="text-center mb-4">Edit Profile</h2>
+    <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

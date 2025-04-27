@@ -1,0 +1,81 @@
+{% extends 'users/base.html' %}
+{% load static %}
+{% block body_class %}jobs-background{% endblock %}
+{% block content %}
+<div class="container mt-4">
+  <div class="card shadow p-4" style="border-radius: 1rem;">
+
+    <!-- Profile Picture Centered -->
+    <div class="text-center mb-4">
+      {% if profile.profile_picture %}
+        <img src="{{ profile.profile_picture.url }}" class="img-fluid rounded-circle border border-4" 
+        style="width: 100px; height: 100px; object-fit: cover;" alt="Profile Picture">
+      {% else %}
+        <img src="{% static 'users/images/default_profile.png' %}" class="img-fluid rounded-circle border border-4" 
+        style="width: 180px; height: 180px; object-fit: cover;" alt="Default Profile Picture">
+      {% endif %}
+    </div>
+
+    <!-- Username -->
+    <h2 class="text-center">{{ profile.user.username }}</h2>
+
+    <hr>
+
+    <!-- Bio Scrollable Box -->
+    <h5><strong>Bio:</strong></h5>
+    <div style="max-height: 150px; overflow-y: auto; padding: 10px; background: #f8f9fa; border-radius: 0.5rem;">
+      {{ profile.bio|default:"No bio provided." }}
+    </div>
+
+    <hr>
+
+    <!-- Now Add Conditions: Employer vs Candidate -->
+    {% if profile.is_employer %}
+      <!-- Employer Profile View -->
+      <h5 class="mt-4"><strong>Employer Details:</strong></h5>
+      
+      {% if profile.location %}
+        <p><strong>Location:</strong> {{ profile.location }}</p>
+      {% else %}
+        <p><em>No location added yet.</em></p>
+      {% endif %}
+
+      <p><em>This is an Employer account.</em></p>
+
+    {% else %}
+      <!-- Candidate Profile View -->
+      <h5 class="mt-4"><strong>Candidate Details:</strong></h5>
+      
+      {% if skills_list %}
+      <h5 class="mt-4"><strong>Skills:</strong></h5>
+      <div>
+        {% for skill in skills_list %}
+          {% if skill %}
+            <span class="badge bg-primary me-1 mb-2">{{ skill }}</span>
+          {% endif %}
+        {% endfor %}
+      </div>
+    {% else %}
+      <p><em>No skills listed.</em></p>
+    {% endif %}
+    
+
+      {% if profile.location %}
+        <hr>
+        <p><strong>Location:</strong> {{ profile.location }}</p>
+      {% endif %}
+
+      {% if profile.resume %}
+        <hr>
+        <p><strong>Resume:</strong> <a href="{{ profile.resume.url }}" target="_blank">Download Resume</a></p>
+      {% endif %}
+    {% endif %}
+
+    <!-- Edit Profile Button -->
+    <div class="text-center mt-4">
+      <a href="{% url 'profile_edit' %}" class="btn btn-outline-primary">Edit Profile</a>
+    </div>
+
+  </div>
+</div>
+{% endblock %}

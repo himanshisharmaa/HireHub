@@ -1,0 +1,64 @@
+{% extends 'users/base.html' %}
+{% block body_class %}jobs-background{% endblock %}
+{% block content %}
+
+<div class="container mt-4">
+  <h2 class="mb-4 text-center fw-bold">My Applications</h2>
+
+  {% if messages %}
+    {% for message in messages %}
+      <div class="alert alert-{{ message.tags }} text-center">
+        {{ message }}
+      </div>
+    {% endfor %}
+  {% endif %}
+
+  {% if applications %}
+    {% for app in applications %}
+      <div class="border rounded p-3 mb-4 bg-white shadow-sm" style="min-height: 220px; overflow-y: auto;">
+        
+        <h5 class="fw-bold">
+          <a href="{% url 'job_detail' app.job.pk %}" class="text-decoration-none text-primary">
+            {{ app.job.title }} at {{ app.job.company }}
+          </a>
+        </h5>
+
+        <p class="mb-1"><strong>Location:</strong> {{ app.job.location }}</p>
+        <p class="mb-1"><strong>Applied on:</strong> {{ app.applied_at|date:"M d, Y" }}</p>
+
+        {% if app.cover_letter %}
+          <p class="mb-1"><strong>Cover Letter:</strong> {{ app.cover_letter }}</p>
+        {% endif %}
+
+        {% if app.resume %}
+          <p class="mb-1"><strong>Resume:</strong> <a href="{{ app.resume.url }}" target="_blank">Download</a></p>
+        {% endif %}
+
+        <div class="d-flex justify-content-between align-items-center mt-2">
+          <div>
+            <strong>Status:</strong>
+            {% if app.status == "Pending" %}
+              <span class="badge bg-warning text-dark">{{ app.status }}</span>
+            {% elif app.status == "Viewed" %}
+              <span class="badge bg-info text-dark">{{ app.status }}</span>
+            {% elif app.status == "Shortlisted" %}
+              <span class="badge bg-success">{{ app.status }}</span>
+            {% endif %}
+          </div>
+
+          <form method="POST" action="{% url 'withdraw_application' app.pk %}">
+            {% csrf_token %}
+            <button class="btn btn-outline-danger btn-sm">Withdraw</button>
+          </form>
+        </div>
+
+      </div>
+    {% endfor %}
+  {% else %}
+    <div class="text-center">
+      <p class="lead">You haven’t applied for any jobs yet.</p>
+    </div>
+  {% endif %}
+</div>
+
+{% endblock %}

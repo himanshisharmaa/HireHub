@@ -1,0 +1,42 @@
+
+{% extends "users/base.html" %}
+{% block body_class %}auth-background{% endblock %}
+{% block title %} Login-HireHub{% endblock %}
+{% block content %}
+<div class="container-fluid">
+  <div class="row min-vh-100 align-items-center">
+    <div class="col-md-5 offset-md-1">
+      <div class="login-card">
+        <h2 class="text-center mb-4">SIGN IN</h2>
+
+        <form method="POST">
+          {% csrf_token %}
+
+          {% if form.non_field_errors %}
+            <div class="alert alert-danger">{{ form.non_field_errors }}</div>
+          {% endif %}
+
+          <div class="mb-3">
+            <label for="id_username" class="form-label">Username</label>
+            <input type="text" name="username" class="form-control">
+          </div>
+
+          <div class="mb-3">
+            <label for="id_password" class="form-label">Password</label>
+            <input type="password" name="password" class="form-control">
+          </div>
+
+          <button type="submit" class="btn btn-primary w-100">Sign In</button>
+        </form>
+
+        <div class="mt-3 text-center">
+          <a class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" href="{% url 'password_reset' %}">Forgot Password?</a> 
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6 d-none d-md-block"></div>
+  </div>
+</div>
+{% endblock  %}
