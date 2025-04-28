@@ -1,6 +1,6 @@
 # HireHub - Job Board Web Application
 
-![HireHub Screenshot](screenshots/1.png)
+![HireHub Screenshot](screenshots/1.PNG)
 
 HireHub is a full-stack **Django** based job portal platform where:
 - Employers can post jobs 
@@ -41,11 +41,11 @@ HireHub is a full-stack **Django** based job portal platform where:
 
 | Home Page | Job Detail Page |
 | :---: | :---: |
-| ![Home](screenshots/1.png) | ![Job Detail](screenshots/9.png) |
+| ![Home](screenshots/1.PNG) | ![Job Detail](screenshots/9.PNG) |
 
 | Candidate Dashboard | Employer Dashboard |
 | :---: | :---: |
-| ![Apply](screenshots/8.png) | ![Dashboard](screenshots/15.png) |
+| ![Apply](screenshots/8.PNG) | ![Dashboard](screenshots/15.PNG) |
 
 
 ---
