@@ -78,16 +78,7 @@ WSGI_APPLICATION = "hirehub.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'hirehub',
-#         'USER': 'hirehub_user',
-#         'PASSWORD': 'aE1pnl78lUhMHaNAcowspSa7jyi6qcH9',
-#         'HOST': 'dpg-d03qlo3uibrs73ahv1dg-a.singapore-postgres.render.com',
-#         'PORT': '5432',
-#     }
-# }
+
 import dj_database_url
 DATABASES={
     'default':dj_database_url.config(
